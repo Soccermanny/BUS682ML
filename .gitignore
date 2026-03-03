@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+*.egg-info/
+
+# Output / data files (stored in GCS)
+movie_clusters.csv
+movie_clusters.html
+rotten_tomatoes_scores.xlsx
+imdb_ratings_output.xlsx
+tmdb_movies.json
+cache_translations.json
+cache_tmdb.json
+cache_wikipedia.json
+cache_wikidata.json
+
+# Log / temp files
+*.log
+clustering_pid.txt
+clustering_err.log
+clustering_run.log
+
+# Excel lock files
+~$*.xlsx
+~$*.xls
+
+# Misc
+.DS_Store
+DS_Store
+*.code-search
