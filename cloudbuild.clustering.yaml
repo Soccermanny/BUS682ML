@@ -1,0 +1,13 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/capstone-486302/movie-clustering:latest'
+      - '-f'
+      - 'Dockerfile.clustering'
+      - '.'
+images:
+  - 'gcr.io/capstone-486302/movie-clustering:latest'
+options:
+  machineType: 'E2_HIGHCPU_8'

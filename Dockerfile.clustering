@@ -1,0 +1,8 @@
+FROM python:3.11-slim
+WORKDIR /app
+RUN apt-get update && apt-get install -y --no-install-recommends gcc g++ && rm -rf /var/lib/apt/lists/*
+COPY requirements.clustering.txt .
+RUN pip install --no-cache-dir -r requirements.clustering.txt
+COPY movie_clustering.py .
+ENV PYTHONIOENCODING=utf-8
+CMD ["python", "movie_clustering.py"]

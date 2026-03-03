@@ -1,0 +1,12 @@
+requests
+pandas
+numpy
+openpyxl
+scikit-learn
+umap-learn
+hdbscan
+plotly
+tqdm
+deep-translator
+langdetect
+google-cloud-storage

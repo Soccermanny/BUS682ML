@@ -1,0 +1,249 @@
+feature,feature_id
+Metropolitan story,440
+A village story,234
+Neighborhood story,69
+Rural Story,404
+Island Setting,446
+Forest Setting,351
+A fantastical realm,62
+Set in America,1058
+Set in Europe,1031
+Set in Asia,38
+Set is East Asia,417
+Set in India,144
+Set in NYC,233
+Set in Los Angeles,434
+Set in California,462
+Set in the American South,1
+Set in the UK,360
+Set in France,206
+Set in Japan,22
+A post-2015 narrative,171
+A Late 20th and Early 21st Century Narrative,86
+The Post-War Era,483
+Mid-20th Century Narrative ,87
+The Pre-Modern Era,137
+High Medieval Fantasy,182
+Set in the Future,41
+Use of non-linear flashbacks,460
+The Aristocrats,454
+Affluent Social Class,1080
+Disadvantaged Social Class,115
+Stories of Imprisonment,255
+The Entertainment Industry,427
+The Fine Arts,43
+Melee Combat,431
+Heavy Gunplay,1050
+A Sports Setting,111
+Philosophical or Intellectual Exploration,78
+Moral Exploration,84
+The Unraveling of Trust,181
+Act of treachery,211
+A quest for retribution,77
+Uneasy Characters,257
+Religious themes,105
+Story With a Focus on Gender,149
+History-in-the-making,1028
+Alternative Reality,518
+Dystopian,471
+Real-world satire,381
+Female-centric narrative,93
+Coming-of-Age Tale,304
+A Black Character-Driven Story,411
+An Asian-Driven Story,1016
+Extraterrestrial Life,478
+The Hero's Journey,177
+The Villian's Story,450
+Flawed Protagonist,1020
+Charming protagonist,243
+Brave Protagonist,362
+Comedic Protagonist,187
+Emotionally Withdrawn Protagonist,1011
+Relatable Protagonist,444
+Family-devoted Protagonist,298
+Genius Protagonist,1034
+Innocent protagonist,180
+Psychologically Unstable Protagonist,1067
+A Heterosexual Relationship,44
+A Father's Arc,507
+A Mother's Arc,1079
+Brothers or Sisters,258
+Parent-Child Narrative,1041
+A Dominant Leader,1061
+A Relentless Chase,1052
+Courtship,1078
+Confronting One's Shadow,293
+Self Discovery,119
+Conquering Adversity,425
+Repeated Setbacks,338
+A Life Story,39
+Coming of Age,52
+Changing Life Direction,279
+Moral Temptation,438
+Grappling with Mortality,215
+A Tale of Mourning,192
+Moral Conflict,420
+The Struggle for Survival,367
+Going after the MacGuffin,162
+To the Rescue,242
+Threatening Wildlife,134
+Talking Animals,303
+An Artist's Story,152
+Live Performance Arts,352
+Childhood Narrative,122
+Young Adventurers,131
+Formative hardships,107
+Violent Crimes,488
+Criminal Underbelly,118
+Cloak-and-Dagger ,308
+Family Restoration,116
+Picture of Idealic Family Life,331
+Family Struggles,6
+About a Family,482
+Childhood Bonds,1007
+Friends Against the Odds,201
+A Group Quest,437
+Male Friends and Bonding,366
+Female Friends and Bonding,519
+Biopic,1046
+Biographical narrative of a historical personality,288
+Avarice,221
+Pursuit of Justice,295
+Budding romance,355
+Will-They-Won't-They Relationship,141
+Losing One's Love,1081
+Perilous Liaison,419
+Relationship Turmoil,1003
+Romantic Triangle,374
+A Law Enforcement Tale,227
+A Detective Story,74
+Political narrative,455
+Psychological challenges,315
+Psychological Distress,496
+Psychological Manipulation,1037
+A Tale of Science,382
+A Tech-Centric Narrative,309
+Enchanted Creatures and Spells,99
+Supernatural Phenomena,68
+Ghosts,468
+A Focus on Feminism,1030
+Focus on Culture,129
+Societal Decline,1014
+Focus on Asian Culture,432
+A Tale of Wartime,28
+The Great Chase,218
+The Hero's Journey,400
+"Hardship, Loss, and Healing",259
+Good-Versus-Evil Conflict,284
+Moral Redemption,125
+Averting the Catastrophe,250
+Reveral of Fortune,318
+Risky Gambit,387
+Rivalry,1015
+Putting Others Above Oneself,1076
+The Superhero Prevails,388
+Deceptive Appearances,262
+The Underdog Wins,1055
+A Whodunnit,53
+Classic Fall-Rise Plot Arc,220
+"Raw, Unfiltered Dialog",354
+Elegant Dialog and Screenplay,157
+Active Narrator Voiceover,473
+Dry Humor Dialogue,4
+Dark or Caustic Wit,341
+Situational Humor,154
+Nonsensical Comedy,379
+Narrative Originality,445
+Fast-paced,190
+Heightened Tension,1074
+Plot Twists!,337
+Unexpected Conclusion,1091
+Happy Ending,1077
+Sad Ending,371
+The Hero Dies in This One,292
+Polished and cohesive script,398
+Signature directorial style,447
+Unconventional directorial approach,92
+Masterful acting,517
+Eccentric Acting,26
+A Black & White,1056
+Sophisticated Visual Effects Integration,470
+Use of Animated CGI,228
+Visceral Cinematography,501
+Advanced Cinematography and Edit Work,1008
+Intricate Costuming,359
+High-end effects,169
+Intricate Stunts,127
+Predominant Set Design,364
+Transformative Make-up,299
+Eerie Score,439
+Tender and heartwarming score,175
+Heavy Impact of the Soundtrack,449
+Predominant Sound Effects,491
+Somber atmosphere,163
+"Positive, Uplifting Emotional Tone",504
+Energetic Emotional Tone,1039
+A Sense of Repulsiveness,21
+Joyful Emotional Expression,142
+A Feeling of Surprise,133
+Suspenseful atmosphere,335
+Profound Amazement,239
+Hostile Gloom,294
+Somber and Eerie Tone,145
+Dismal and unsettling tone,42
+Ominous and Chilling,416
+Positive Emotional Tone,368
+Positive and Sentimental,477
+Melancholy Atmosphere,191
+Heartfelt and Hopeful,521
+A Poignant Mood,1032
+Narrative Driven by the Context,83
+Plot-Centric,76
+Direction-Driven,156
+Deliberate Visual Authorship,1048
+A Focus on the Issues,75
+A Focus on Mood,305
+Dialog-Driven,475
+Character-Driven,317
+Built Around Humor,183
+Music-led Storytelling,378
+A Adventure Comedy,1033
+A Sci-Fi Adventure,276
+an early life drama,1085
+A Crime Thriller,1012
+A Spy Thriller,46
+A Wholesome Comedy,408
+A Family Drama,266
+A Comic Fantasy,140
+A Buddy Comedy,1009
+A Friendship Drama,17
+A Romantic Drama,1006
+A Romantic Dramedy,500
+A Police Thriller,493
+Psychological Crime,153
+Psychological Horror,34
+Psychological Suspense,457
+A Science Thriller,110
+A Futuristic Thriller,19
+Visually Beautiful / Immersive,320
+Natural splendor,273
+Music-Rich,196
+Explicit Violence and Goriness,282
+A Mainstream Feature,158
+All-ages,479
+Rich Visual Cinematography,383
+Intellectually Stimulating,1086
+Spirit-Stirring,329
+Profound & Reflective,265
+Unsettling,508
+Use of Heavy Technology,395
+Historical References,89
+A Lead with Expertise,178
+A Lead Worth Cheering For,1023
+A Formidable Challenge,61
+A Tidy Ending,467
+A Stock Story,106
+"Dangerous, Risky Behaviors",232
+Feel-Good Narrative,238
+Use of Shock Elements,29
+Intended Fright Response,11

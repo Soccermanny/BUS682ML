@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-f', 'Dockerfile.imdb', '-t', 'gcr.io/capstone-486302/imdb-scraper:latest', '.']
+images:
+- 'gcr.io/capstone-486302/imdb-scraper:latest'

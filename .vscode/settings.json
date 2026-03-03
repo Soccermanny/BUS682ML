@@ -1,0 +1,113 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "10m": true,
+        "textPayload": true,
+        "gcloud": true,
+        "docker build": true,
+        "/^docker --version$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "gsutil": true,
+        "C:/Users/manny/Documents/BUS682_Project1/.venv/Scripts/python.exe": true,
+        "spec.template.spec.template.spec.containers[0].env": true,
+        "status.startTime,status.completionTime,status.succeededCount,status.runningCount,status.failedCount": true,
+        "/^gcloud run jobs executions describe imdb-scraper-pb76p --region us-central1 --format=\"table\\(status\\.startTime,status\\.completionTime,status\\.succeededCount,status\\.failedCount\\)\" 2>&1; gcloud run jobs executions describe imdb-scraper-pb76p --region us-central1 --format=json 2>&1 \\| Select-String -Pattern \"message\\|error\\|reason\\|exitCode\\|lastAttempt\" -CaseSensitive:\\$false$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^gcloud logging read \"resource\\.type=cloud_run_job AND resource\\.labels\\.job_name=imdb-scraper AND labels\\.run\\.googleapis\\.com/execution_name=imdb-scraper-pb76p\" --limit=30 --format=\"table\\(timestamp,textPayload\\)\" --order=desc 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^gcloud logging read \"resource\\.type=cloud_run_job AND resource\\.labels\\.job_name=imdb-scraper\" --limit=50 --format=\"value\\(timestamp,textPayload,jsonPayload\\.message\\)\" --order=desc 2>&1 \\| Select-Object -First 60$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^gcloud run jobs describe imdb-scraper --region us-central1 --format=\"table\\(spec\\.template\\.spec\\.timeoutSeconds,spec\\.template\\.spec\\.taskCount,spec\\.template\\.spec\\.parallelism,status\\.conditions\\)\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^gcloud run jobs describe imdb-scraper --region us-central1 --format=json 2>&1 \\| python -c \"import sys,json; d=json\\.load\\(sys\\.stdin\\); t=d\\.get\\('spec',\\{\\}\\)\\.get\\('template',\\{\\}\\)\\.get\\('spec',\\{\\}\\); print\\('timeout:', t\\.get\\('timeoutSeconds'\\)\\); print\\('taskCount:', t\\.get\\('taskCount'\\)\\); envs=d\\.get\\('spec',\\{\\}\\)\\.get\\('template',\\{\\}\\)\\.get\\('spec',\\{\\}\\)\\.get\\('containers',\\[\\{\\}\\]\\)\\[0\\]\\.get\\('env',\\[\\]\\); \\[print\\(e\\['name'\\],'=',e\\.get\\('value',''\\)\\) for e in envs\\]\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^gcloud run jobs executions describe imdb-scraper-768j7 --region us-central1 --format=\"table\\(status\\.startTime,status\\.completionTime,status\\.succeededCount,status\\.failedCount,status\\.runningCount\\)\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "name,status.startTime,status.runningCount": true,
+        "/^python -c \"\nimport re\nwith open\\(r'C:\\\\Users\\\\manny\\\\Documents\\\\BUS682_Project1\\\\movie_clustering\\.py', encoding='utf-8'\\) as f:\n    lines = f\\.readlines\\(\\)\nfor i, line in enumerate\\(lines, 1\\):\n    try:\n        line\\.encode\\('cp1252'\\)\n    except UnicodeEncodeError:\n        print\\(f'Line \\{i\\}: \\{line\\.rstrip\\(\\)\\}'\\)\n\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^Start-Sleep -Seconds 30; Get-Job -Id 3 \\| Select-Object State; Get-Content \"C:\\\\Users\\\\manny\\\\Documents\\\\BUS682_Project1\\\\clustering_run\\.log\" -Tail 20 -ErrorAction SilentlyContinue$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "Get-Job": true,
+        "Stop-Job": true,
+        "Remove-Job": true,
+        "/^gcloud run jobs executions describe movie-clustering-8bph8 --region us-central1 --format=json 2>&1 \\| python -c \"import sys,json; d=json\\.load\\(sys\\.stdin\\); s=d\\.get\\('status',\\{\\}\\); print\\('succeeded:', s\\.get\\('succeededCount'\\)\\); print\\('failed:', s\\.get\\('failedCount'\\)\\); \\[print\\(c\\['type'\\],'-',c\\.get\\('message',''\\)\\) for c in s\\.get\\('conditions',\\[\\]\\)\\]\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "timestamp,textPayload,jsonPayload.message": true,
+        "/^gcloud logging read \"resource\\.type=cloud_run_job AND resource\\.labels\\.job_name=movie-clustering\" --limit=100 --order=asc --format=json --freshness=6h 2>&1 \\| python -c \"\nimport sys, json\ntext = sys\\.stdin\\.read\\(\\)\ntry:\n    entries = json\\.loads\\(text\\)\n    for e in entries:\n        msg = e\\.get\\('textPayload'\\) or e\\.get\\('jsonPayload',\\{\\}\\)\\.get\\('message',''\\)\n        if msg:\n            print\\(msg\\)\nexcept:\n    print\\(text\\[:3000\\]\\)\n\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^gcloud run jobs executions list --job movie-clustering --region us-central1 --limit 3 --format=\"value\\(name,status\\.startTime,status\\.completionTime,status\\.succeededCount,status\\.failedCount\\)\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^gcloud run jobs executions describe movie-clustering-7rb6x --region us-central1 --format=\"value\\(status\\.succeededCount,status\\.failedCount,status\\.completionTime\\)\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^gcloud run jobs executions describe movie-clustering-65nfj --region us-central1 --format=\"value\\(status\\.startTime,status\\.completionTime,status\\.succeededCount,status\\.failedCount,status\\.runningCount\\)\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^Start-Sleep -Seconds 60; gcloud run jobs executions describe movie-clustering-65nfj --region us-central1 --format=\"value\\(status\\.startTime,status\\.completionTime,status\\.succeededCount,status\\.failedCount,status\\.runningCount\\)\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^gcloud logging read \"resource\\.type=cloud_run_job AND resource\\.labels\\.job_name=movie-clustering\" --freshness=30m --limit=50 --order=asc --format=\"value\\(textPayload,jsonPayload\\.message\\)\" 2>&1 \\| Select-Object -Last 40$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^Start-Sleep -Seconds 90 ; gcloud logging read \"resource\\.type=cloud_run_job AND resource\\.labels\\.job_name=movie-clustering\" --freshness=5m --limit=30 --order=asc --format=\"value\\(textPayload\\)\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "3m": true,
+        "asc": true,
+        "2m": true,
+        "desc": true,
+        "/^gcloud run jobs executions describe movie-clustering-q6bzj --region us-central1 --format=\"value\\(status\\.conditions,status\\.completionTime,status\\.startTime,status\\.succeededCount,status\\.failedCount\\)\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^gcloud run jobs describe rt-scraper --region us-central1 --format=\"yaml\\(spec\\.template\\.spec\\.containers\\[0\\]\\.env\\)\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^gcloud run jobs executions list --job rt-scraper --region us-central1 --limit=3 --format=\"table\\(name,status\\.startTime,status\\.completionTime,status\\.succeededCount,status\\.failedCount\\)\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^gcloud run jobs describe rt-scraper --region us-central1 --format=\"value\\(spec\\.template\\.spec\\.containers\\[0\\]\\.image\\)\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^gcloud run jobs executions list --job rt-scraper --region us-central1 --limit=5 --format=\"table\\(name,status\\.startTime,status\\.completionTime,status\\.succeededCount,status\\.failedCount\\)\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^gcloud logging read \"resource\\.type=cloud_run_job AND resource\\.labels\\.job_name=rt-scraper\" --freshness=5m --limit=20 --order=desc --format=\"value\\(textPayload\\)\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
