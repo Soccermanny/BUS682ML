@@ -39,6 +39,7 @@ class ValidationEnricher:
     def __init__(self, tmdb_api_key: str):
         self.tmdb_key = tmdb_api_key
         self.session = self._create_session()
+        self.wikidata_session = self._create_wikidata_session()
         self.wikidata_cache = {}
         self.wikipedia_cache = {}
     
@@ -48,6 +49,19 @@ class ValidationEnricher:
         retry = Retry(
             total=3,
             backoff_factor=0.5,
+            status_forcelist=[429, 500, 502, 503, 504]
+        )
+        adapter = HTTPAdapter(max_retries=retry)
+        session.mount('http://', adapter)
+        session.mount('https://', adapter)
+        return session
+    
+    def _create_wikidata_session(self):
+        """Create requests session for Wikidata with aggressive retry"""
+        session = requests.Session()
+        retry = Retry(
+            total=5,
+            backoff_factor=1.0,
             status_forcelist=[429, 500, 502, 503, 504]
         )
         adapter = HTTPAdapter(max_retries=retry)
