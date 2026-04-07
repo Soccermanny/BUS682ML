@@ -1,6 +1,0 @@
-Metric,Ridge A+,Ridge B+
-Optimal Alpha,10.0,10.0
-CV R2 (RidgeCV),0.4679277726452039,0.5408815629271072
-In-sample R2,0.519391449033504,0.5930856650367795
-Stable factors (pct),60.0%,56.7%
-Direction match (pct),80.0%,96.7%

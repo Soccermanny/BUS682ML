@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  enrichment:
+    build: .
+    container_name: movie_enrichment
+    environment:
+      - TMDB_API_KEY=575a07d93b4face7cb66e921afb5de98
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./output:/app/output
+      - ./project_2_data_filled_with_api.csv:/app/project_2_data_filled_with_api.csv
+    working_dir: /app
+    command: python enrich_with_validation.py
+    restart: no
