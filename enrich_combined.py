@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
-Combined Enrichment Script - 3-Layer Strategy
+Combined Enrichment Script - 4-Layer Strategy
 ==============================================
 1. TMDB API (primary, via IMDb ID lookup)
-2. Wikidata SPARQL (fallback, classic films)
-3. Wikipedia infobox parsing (tertiary, historical records)
+2. IMDb website scraping (fallback, direct page parsing)
+3. Wikidata SPARQL (secondary, classic films)
+4. Wikipedia infobox parsing (tertiary, historical records)
 
-All budgets are labeled with source: tmdb_api | wikidata | wikipedia
+All budgets are labeled with source: tmdb_api | imdb_scraping | wikidata | wikipedia | not_found
 """
 
 import os
@@ -318,18 +319,63 @@ LIMIT 1
         
         return None
     
+    def get_budget_from_imdb_scraping(self, imdb_id: str) -> Optional[int]:
+        """Scrape IMDb page for budget information - Layer 2"""
+        try:
+            url = f"https://www.imdb.com/title/{imdb_id}/"
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            }
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()
+            
+            soup = BeautifulSoup(response.content, 'html.parser')
+            
+            # Look for budget in various formats on IMDb page
+            for ul in soup.find_all('ul', class_='ipc-metadata-list'):
+                for li in ul.find_all('li'):
+                    text = li.get_text(strip=True)
+                    if 'Budget' in text or 'Production Budget' in text:
+                        # Extract dollar amount
+                        import re
+                        match = re.search(r'\$\s*([\d,]+(?:\.\d+)?)\s*(?:million|M)?', text, re.IGNORECASE)
+                        if match:
+                            amount = float(match.group(1).replace(',', ''))
+                            if 'million' in text.lower():
+                                amount *= 1_000_000
+                            return int(amount)
+            
+            # Alternative: Look in schema.org structured data
+            import json as json_lib
+            for script in soup.find_all('script', type='application/ld+json'):
+                try:
+                    data = json_lib.loads(script.string)
+                    if isinstance(data, dict) and 'budget' in data:
+                        budget_str = str(data['budget'])
+                        match = re.search(r'[\d,]+', budget_str.replace(',', ''))
+                        if match:
+                            return int(match.group())
+                except:
+                    continue
+                    
+        except requests.RequestException as e:
+            logger.debug(f"IMDb scraping failed for {imdb_id}: {e}")
+        
+        return None
+
     def get_budget_by_imdb_id(self, imdb_id: str, title: str, year: Optional[int] = None) -> Tuple[Optional[int], str]:
-        """3-layer budget lookup with source tracking:
+        """4-layer budget lookup with source tracking:
         Layer 1: TMDB API (via IMDb ID)
-        Layer 2: Wikidata SPARQL (production cost property)
-        Layer 3: Wikipedia infobox (budget extraction)
+        Layer 2: IMDb website scraping
+        Layer 3: Wikidata SPARQL (production cost property)
+        Layer 4: Wikipedia infobox (budget extraction)
         
         Returns (budget_amount, source_label)
         """
         logger.debug(f"    Budget lookup: {imdb_id} '{title}' ({year})")
         
         # Layer 1: Try TMDB API
-        logger.debug(f"      Layer 1 (TMDB)")
+        logger.debug(f"      Layer 1 (TMDB API)")
         tmdb_id = self.get_tmdb_id_by_imdb(imdb_id)
         if tmdb_id:
             budget = self.get_budget_by_tmdb_id(tmdb_id)
@@ -339,20 +385,29 @@ LIMIT 1
         
         time.sleep(0.5)  # Polite rate limiting
         
-        # Layer 2: Fallback to Wikidata
-        logger.debug(f"      Layer 2 (Wikidata)")
+        # Layer 2: Fallback to IMDb scraping
+        logger.debug(f"      Layer 2 (IMDb scraping)")
+        budget = self.get_budget_from_imdb_scraping(imdb_id)
+        if budget:
+            logger.debug(f"      ✓ Layer 2 SUCCESS: IMDb scraping - ${budget:,}")
+            return budget, "imdb_scraping"
+        
+        time.sleep(0.5)  # Polite rate limiting
+        
+        # Layer 3: Fallback to Wikidata
+        logger.debug(f"      Layer 3 (Wikidata)")
         budget, source = self.layer2_wikidata(title, year)
         if budget:
-            logger.debug(f"      ✓ Layer 2 SUCCESS: Wikidata - ${budget:,}")
+            logger.debug(f"      ✓ Layer 3 SUCCESS: Wikidata - ${budget:,}")
             return budget, source
         
         time.sleep(0.5)
         
-        # Layer 3: Fallback to Wikipedia
-        logger.debug(f"      Layer 3 (Wikipedia)")
+        # Layer 4: Fallback to Wikipedia
+        logger.debug(f"      Layer 4 (Wikipedia)")
         budget, source = self.layer3_wikipedia(title, year)
         if budget:
-            logger.debug(f"      ✓ Layer 3 SUCCESS: Wikipedia - ${budget:,}")
+            logger.debug(f"      ✓ Layer 4 SUCCESS: Wikipedia - ${budget:,}")
             return budget, source
         
         # No data found from any source
@@ -590,7 +645,7 @@ LIMIT 1
         """
         Main enrichment pipeline:
         1. Load data
-        2. Fill missing budgets (3-layer: TMDB → Wikidata → Wikipedia)
+        2. Fill missing budgets (4-layer: TMDB → IMDb scraping → Wikidata → Wikipedia)
         3. Fetch MPAA ratings (IMDb scraping with 3-retry)
         4. Save enriched dataset with source labels
         """
